@@ -9,6 +9,9 @@ import {useSelector } from "react-redux";
 import Header from "./Header";
 import useNowPlayingMovies from "../customHooks/useNowPlayingMovies";
 import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
+import usePopularMovies from "../customHooks/usePopularMovies";
+import useTopRatedMovies from "../customHooks/useTopRatedMovies";
 
 const Browse = () => {
   // const [movieData,setMovieData]=useState([]);
@@ -30,6 +33,8 @@ const Browse = () => {
   };
   //custom hook
   useNowPlayingMovies();
+  usePopularMovies();
+  useTopRatedMovies();
   return (
     <>
       <div className="flex flex-row justify-between px-4 bg-gradient-to-t from-black">
@@ -56,6 +61,7 @@ const Browse = () => {
         </div>
       </div>
       <MainContainer/>
+      <SecondaryContainer/>
     </>
   );
 };
