@@ -7,7 +7,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utilities/userSlice";
 
@@ -16,7 +16,7 @@ import { addUser } from "../utilities/userSlice";
 const LoginPage = () => {
   const [signIn, setSignIn] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   //useRefs hook can also be used to fetch value from input fields if we don't want to use useStae hook.
@@ -75,7 +75,7 @@ const LoginPage = () => {
                   email
                 })
               );
-              navigate("/browse");
+              // navigate("/browse");
               // ...
             })
             .catch((error) => {
@@ -106,8 +106,17 @@ const LoginPage = () => {
         .then((userCredential) => {
           // Signed in, so now add logic for what to do after signing in the user up.
           // const user = userCredential.user;
-          navigate("/browse");
+          // navigate("/browse");
           // console.log(user);
+          // const { uid, email,displayName,phoneNumber } = user;
+          // dispatch(
+          //   addUser({
+          //     uid: uid,
+          //     email: email,
+          //     displayName:displayName,
+          //     phoneNumber:phoneNumber,
+          //   })
+          // );
         })
         .catch((error) => {
           //when there is no such user found in firebase
