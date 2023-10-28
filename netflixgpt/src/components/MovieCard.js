@@ -6,7 +6,7 @@ const MovieCard = ({movie}) => {
     <>
         {/* <p>hi</p> */}
       <img
-        className="h-80 w-80 border-1 border-gray-800 rounded-sm"
+        className="h-80 w-80 border-1 border-gray-800 rounded-sm hover:scale-95 hover:cursor-pointer"
         key={movie?.id}
         alt="movie-poster"
         src={TMDB_IMG_URL + movie?.poster_path}

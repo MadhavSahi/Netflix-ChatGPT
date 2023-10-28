@@ -1,29 +1,37 @@
 import React from "react";
-// import Header from "./Header";
 import UserIcon from "../images/Netflix-avatar.png";
-// import logo from "../images/Netflix_Logo.png";
 import { auth } from "../utilities/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import {useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
-import useNowPlayingMovies from "../customHooks/useNowPlayingMovies";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
+// import LoadingSpinner from "./LoadingSpinner";
 import usePopularMovies from "../customHooks/usePopularMovies";
+import useNowPlayingMovies from "../customHooks/useNowPlayingMovies";
 import useTopRatedMovies from "../customHooks/useTopRatedMovies";
+import { gptBtnToggle } from "../utilities/gptSlice";
+import GPTContainer from "./GPTContainer";
+import { languageSelectFxn } from "../utilities/languageSlice";
+import { languages } from "../utilities/constants";
 
 const Browse = () => {
-  // const [movieData,setMovieData]=useState([]);
+  //custom hook
+  useNowPlayingMovies();
+  usePopularMovies();
+  useTopRatedMovies();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const userSelector = useSelector((store) => store?.user);
+  const gptBtnSelector = useSelector((store) => store?.gpt?.gptBtnState);
+  const languageSelector = useSelector(
+    (store) => store?.language?.languageSelect
+  );
+
   const handleSignOutBtn = () => {
-    //this firebase API is used to signout the user and the onAuthStateChanged() will get triggered aftrwards this method
     signOut(auth)
       .then(() => {
-        // navigate("/");
-        //we have to do it here bcz we can;t do navigate in Body.js as it has the parent router navigations...
-        // the way to handle signout is in onAuthStateChanged in Body.js
         // Sign-out successful.
       })
       .catch((error) => {
@@ -31,39 +39,80 @@ const Browse = () => {
         // An error happened.
       });
   };
-  //custom hook
-  useNowPlayingMovies();
-  usePopularMovies();
-  useTopRatedMovies();
+  const handleGPTBtn = (e) => {
+    dispatch(gptBtnToggle()); //will toggle false->true and vv
+    
+    dispatch(languageSelectFxn("english"));
+  };
+  const handleLanguageChange = (e) => {
+    // setSelectedLanguage(e.target.value);
+    dispatch(languageSelectFxn(e.target.value));
+  };
   return (
     <>
       <div className="flex flex-row justify-between px-4 bg-gradient-to-t from-black">
-        {/* <img
-          className="w-52 h-28"
-          src={logo}
-          alt="Netflix Logo"
-        /> */}
         <Header />
-        {/* <p>hi</p> */}
         {userSelector?.displayName && (
           <p className="text-black text-4xl py-8 font-semibold">
-            Welcome, Mr. {userSelector?.displayName}
+            {languages?.[languageSelector]?.greettext}, Mr.{" "}
+            {userSelector?.displayName}
           </p>
         )}
         <div className="flex flex-row my-5 gap-2">
+          {gptBtnSelector && (
+            <div className="flex flex-col gap-1">
+              <label className="" htmlFor="languageSelect">
+                {languages?.[languageSelector]?.selectLanguagetext}
+              </label>
+              <select
+                className="bg-gray-400 font-semibold text-white"
+                id="languageSelect"
+                // value={selectedLanguage}
+                onChange={handleLanguageChange}
+              >
+                {/* <option value="">Select a language</option> */}
+                <option className="bg-black" default="english" value="english">
+                  English
+                </option>
+                <option className="bg-black" value="hindi">
+                  Hindi
+                </option>
+                <option className="bg-black" value="punjabi">
+                  Punjabi
+                </option>
+              </select>
+            </div>
+          )}
+
+          <button
+            onClick={handleGPTBtn}
+            className="bg-purple-800 text-white w-24 h-12 mt-2 font-bold hover:scale-90"
+            // >{!gptBtnSelector ? "GPT Search" : "Home Page"}
+          >
+            {!gptBtnSelector
+              ? "GPT Search"
+              : languages?.[languageSelector]?.homepagetext}
+          </button>
           <img className="w-20 h-16" src={UserIcon} alt="logo-user" />
           <button
             onClick={handleSignOutBtn}
             className="bg-red-500 w-20 h-12 text-white mt-2 hover:scale-90 font-bold"
           >
-            Sign Out
+            {languages?.[languageSelector]?.signouttext}
           </button>
         </div>
       </div>
-      <MainContainer/>
-      <SecondaryContainer/>
+      {gptBtnSelector ? (
+        <>
+          <GPTContainer />
+        </>
+      ) : (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
     </>
   );
 };
-
 export default Browse;
