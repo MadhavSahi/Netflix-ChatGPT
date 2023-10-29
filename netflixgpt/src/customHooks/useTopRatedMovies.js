@@ -4,6 +4,9 @@ import { API_OPTIONS } from "../utilities/constants";
 import { addTopRatedMovies } from "../utilities/moviesSlice";
 
 const useTopRatedMovies = () => {
+  const MEMO_TOP_RATED_MOVIES = useSelector(
+    (store) => store?.movies?.topRatedMovies
+  );
   const dispatch = useDispatch();
   const TOP_RATED_MOVIES_API_CALL = async () => {
     const data = await fetch(
@@ -16,7 +19,9 @@ const useTopRatedMovies = () => {
     dispatch(addTopRatedMovies(json_Data?.results));
   };
   useEffect(() => {
-    TOP_RATED_MOVIES_API_CALL();
+    if (!MEMO_TOP_RATED_MOVIES) {
+      TOP_RATED_MOVIES_API_CALL();
+    }
     // console.log(movieData);
     // eslint-disable-next-line
   }, []);

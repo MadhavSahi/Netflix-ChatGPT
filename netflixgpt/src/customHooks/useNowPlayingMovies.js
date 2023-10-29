@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import { API_OPTIONS } from "../utilities/constants";
 
 const useNowPlayingMovies = () => {
+  const MEMO_NOW_PLAYING_MOVIES = useSelector(
+    (store) => store?.movies?.nowPlayingMovies
+  );
   const dispatch = useDispatch();
   const NOW_PLAYING_MOVIES_API_CALL = async () => {
     const data = await fetch(
@@ -15,7 +18,9 @@ const useNowPlayingMovies = () => {
     dispatch(addNowPlayingMovies(json_Data?.results));
   };
   useEffect(() => {
-    NOW_PLAYING_MOVIES_API_CALL();
+    if (!MEMO_NOW_PLAYING_MOVIES) {
+      NOW_PLAYING_MOVIES_API_CALL();
+    }
     // console.log(movieData);
     // eslint-disable-next-line
   }, []);
