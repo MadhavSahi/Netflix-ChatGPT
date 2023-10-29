@@ -143,11 +143,11 @@ const GPTMovies = () => {
 
   return (
     <>
-      <div className="py-3 mx-0 flex flex-col gap-2">
+      <div className="bg-bgBody py-0 mx-0 flex flex-col gap-2 ">
         <div className="flex flex-row gap-5 flex-wrap justify-center overflow-x-scroll [&::-webkit-scrollbar]:hidden ">
           {loading ? (
             <p className="text-black w-1/3 text-4xl font-semibold bg-white text-center">
-              Loading...
+              
             </p>
           ) : finalmoviesArrayofObj.length === 0 ? (
             <p>No movies found.</p>

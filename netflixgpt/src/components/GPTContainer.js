@@ -19,19 +19,21 @@ const GPTContainer = () => {
       gptQueryText.current.value +
       ". Give 10 results in comma separted values like Movie 1,  Movie 2, Movie 3, Movie 4, Movie 5, Movie 6,  Movie 7, Movie 8, Movie 9, Movie 10. Don't add any extra text";
     // console.log(gptQueryText.current.value);
-    // console.log(PROMPT_GOOD);
+    console.log(PROMPT_GOOD);
     const chatCompletion = await openai.chat.completions.create({
       messages: [{ role: "user", content: PROMPT_GOOD }],
       model: "gpt-3.5-turbo",
     });
     dispatch(gptMoviesAdd(chatCompletion.choices[0]?.message?.content));
-    // console.log(chatCompletion.choices[0]?.message?.content);
+    console.log(typeof(chatCompletion.choices[0]?.message?.content));
+    console.log(chatCompletion.choices[0]?.message?.content);
   };
   return (
     <>
       {/* <p className="text-center">GPT CONTAINER</p> */}
-      <div className="bg-bgBody h-[100vh] bg-cover bg-repeat">
-      <div className=" text-white flex flex-col justify-center items-center p-5 gap-5">
+      {/* <div className="bg-bgBody bg-cover bg-repeat"> */}
+      <div className="">
+      <div className=" text-white bg-black flex flex-col justify-center items-center p-5 gap-5">
         <form className="flex flex-row gap-5">
           <input
             ref={gptQueryText}
