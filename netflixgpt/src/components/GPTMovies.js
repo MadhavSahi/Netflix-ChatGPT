@@ -91,7 +91,6 @@ const GPTMovies = () => {
   const finalmoviesArrayofObj = useSelector(
     (store) => store?.gpt?.gptFinalMoviesArrayofObj
   );
-//   console.log(finalmoviesArrayofObj);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -124,16 +123,19 @@ const GPTMovies = () => {
           poster_path: each_movie?.poster_path,
         });
 
-        const newArray = RESOLVED_PROMISES_ARRAY.flatMap((group) =>
-          group
+        if (Array.isArray(RESOLVED_PROMISES_ARRAY)) {
+          const newArray = RESOLVED_PROMISES_ARRAY.flat()
             .filter(
               (each_movie) => each_movie?.title && each_movie?.poster_path
             ) // Filter valid objects
-            .map((each_movie) => extractFields(each_movie))
-        );
+            .map((each_movie) => extractFields(each_movie));
 
-        dispatch(gptFinalMoviesArrayofObj(newArray));
-        setLoading(false);
+          dispatch(gptFinalMoviesArrayofObj(newArray));
+          setLoading(false);
+        } else {
+          console.error("RESOLVED_PROMISES_ARRAY is not an array.");
+          setLoading(false);
+        }
       };
 
       resolvePromises();
@@ -143,11 +145,11 @@ const GPTMovies = () => {
 
   return (
     <>
-      <div className="bg-bgBody py-0 mx-0 flex flex-col gap-2 ">
-        <div className="flex flex-row gap-5 flex-wrap justify-center overflow-x-scroll [&::-webkit-scrollbar]:hidden ">
+      <div className="bg-bgBody py-0 mx-0 flex flex-col gap-2">
+        <div className="flex flex-row gap-5 flex-wrap justify-center overflow-x-scroll [&::-webkit-scrollbar]:hidden">
           {loading ? (
             <p className="text-black w-1/3 text-4xl font-semibold bg-white text-center">
-              
+              Loading...
             </p>
           ) : finalmoviesArrayofObj.length === 0 ? (
             <p>No movies found.</p>

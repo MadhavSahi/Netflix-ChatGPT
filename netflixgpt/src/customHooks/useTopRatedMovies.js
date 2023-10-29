@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utilities/constants";
 import { addTopRatedMovies } from "../utilities/moviesSlice";

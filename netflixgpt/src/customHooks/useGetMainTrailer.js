@@ -7,20 +7,29 @@ const useGetMainTrailer = (movieId) => {
   const MEMO_MAIN_TRAILER = useSelector((store) => store?.movies?.movieTrailer);
   const dispatch = useDispatch();
   const MovieTrailer = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/" +
-        movieId +
-        "/videos?language=en-US",
-      API_OPTIONS
-    );
-    const json = await data.json();
-    const onlyVideosArray = json?.results;
-    const onlyTrailers = onlyVideosArray.filter(
-      (each_video) => each_video.type === "Trailer"
-    );
-    // console.log(onlyTrailers[0]);
-    dispatch(addMovieTrailer(onlyTrailers));
+    try {
+      const data = await fetch(
+        "https://api.themoviedb.org/3/movie/" +
+          movieId +
+          "/videos?language=en-US",
+        API_OPTIONS
+      );
+      const json = await data.json();
+
+      if (json && json.results && Array.isArray(json.results)) {
+        const onlyVideosArray = json.results;
+        const onlyTrailers = onlyVideosArray.filter(
+          (each_video) => each_video.type === "Trailer"
+        );
+
+        // Dispatch the trailers to the store
+        dispatch(addMovieTrailer(onlyTrailers));
+      }
+    } catch (error) {
+      console.error("Error fetching movie trailers:", error);
+    }
   };
+
   useEffect(() => {
     if (!MEMO_MAIN_TRAILER) {
       MovieTrailer();
