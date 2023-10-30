@@ -106,7 +106,7 @@ const GPTMovies = ({ inputText }) => {
           const json = await result.json();
           return json.results;
         } catch (error) {
-          console.error("Error fetching movie data:", error);
+          // console.error("Error fetching movie data:", error);
           return [];
         }
       };
@@ -133,7 +133,7 @@ const GPTMovies = ({ inputText }) => {
           dispatch(gptFinalMoviesArrayofObj(newArray));
           setLoading(false);
         } else {
-          console.error("RESOLVED_PROMISES_ARRAY is not an array.");
+          // console.error("RESOLVED_PROMISES_ARRAY is not an array.");
           setLoading(false);
         }
       };

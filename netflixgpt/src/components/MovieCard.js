@@ -8,12 +8,14 @@ import {
 
 const MovieCard = ({ movie }) => {
   const dispatch = useDispatch();
+  // console.log(movie);
   // console.log(movie.id);
   // useEffect(() => {
   //   handlePosterClick();
   //   // eslint-disable-next-line
   // }, []);
   const handlePosterClick = async () => {
+    window.scrollTo(0, 90);
     try {
       // console.log(movie);
       // API CALL for Clicked movie Videos
@@ -24,6 +26,7 @@ const MovieCard = ({ movie }) => {
         API_OPTIONS
       );
       const json = await data.json();
+      // console.log(json);
 
       if (
         json.results &&
@@ -34,9 +37,11 @@ const MovieCard = ({ movie }) => {
           (obj) =>
             obj.name === "Official Trailer" ||
             obj.name === "Final Trailer" ||
-            obj.name === "Official Teaser"
+            obj.name === "Official Teaser" ||
+            obj.type === "Trailer"
         );
         const Trailer_Key = OBJ_WITH_TRAILER?.key;
+        // console.log(Trailer_Key);
         dispatch(addClickedMovieTrailerKey(Trailer_Key));
       } else {
         console.error("No video results found for the movie.");
@@ -49,6 +54,7 @@ const MovieCard = ({ movie }) => {
       );
 
       const json2 = await data2.json();
+      // console.log(json2);
 
       dispatch(
         addClickedMovieDetails({
@@ -57,7 +63,7 @@ const MovieCard = ({ movie }) => {
         })
       );
     } catch (error) {
-      console.error("Error while fetching movie data:", error);
+      // console.error("Error while fetching movie data:", error);
     }
   };
 

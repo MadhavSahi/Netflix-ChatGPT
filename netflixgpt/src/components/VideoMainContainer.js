@@ -10,6 +10,8 @@ const VideoMainContainer = ({ movieId }) => {
   const clickedMovieTrailerKeySelector = useSelector(
     (store) => store?.movies?.clickedMovieTrailerKey
   );
+  // console.log(clickedMovieTrailerKeySelector);
+  //addClickedMovieTrailerKey
   // console.log(movieTrailerSelector[0]?.id);
   //   const moviesArray = useSelector((store) => store?.movies?.nowPlayingMovies);
   //   const mainMovie = moviesArray ? moviesArray[0] : null;

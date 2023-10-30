@@ -13,7 +13,8 @@ const MovieCardGPT = ({ movie }) => {
   // console.log(movie);
   const dispatch = useDispatch();
   const handleGPTMovieClicked = async () => {
-    console.log(movie);
+    window.scroll(0, 90);
+    // console.log(movie);
 
     //API call for getting movieID from name
     const result = await fetch(
@@ -23,7 +24,8 @@ const MovieCardGPT = ({ movie }) => {
       API_OPTIONS
     );
     const json0 = await result.json();
-    console.log(json0?.results[0]?.id);
+    // console.log(json0);
+    // console.log(json0?.results[0]?.id);
 
     // API CALL for Clicked movie Videos
     const data = await fetch(
@@ -33,7 +35,14 @@ const MovieCardGPT = ({ movie }) => {
       API_OPTIONS
     );
     const json = await data.json();
-    console.log(json.results);
+    // console.log(json.results);
+    if (json.results.length !== 0) {
+      // console.log("result present");
+    } else {
+      //No Videos for this movie ID found hence we are displaying BLANK SCREEN VIDEO with hard coded Key
+      dispatch(addClickedMovieTrailerKey("-Pg819il8lY?si=HuYfYE0TeyMN2YLT"));
+      // console.log("result absent");
+    }
 
     if (
       json.results &&
@@ -48,10 +57,12 @@ const MovieCardGPT = ({ movie }) => {
           obj.type === "Trailer"
       );
       const Trailer_Key = OBJ_WITH_TRAILER?.key;
-      console.log(Trailer_Key);
+      // console.log(Trailer_Key);
       dispatch(addClickedMovieTrailerKey(Trailer_Key));
     } else {
       console.error("No video results found for the movie.");
+
+      // dispatch(addClickedMovieTrailerKey("-Pg819il8lY?si=HuYfYE0TeyMN2YLT"));
     }
 
     // API CALL for Clicked movie details
@@ -63,7 +74,7 @@ const MovieCardGPT = ({ movie }) => {
     );
 
     const json2 = await data2.json();
-    console.log(json2);
+    // console.log(json2);
 
     dispatch(
       addClickedMovieDetails({
