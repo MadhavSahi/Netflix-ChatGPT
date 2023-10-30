@@ -41,7 +41,7 @@ const Browse = () => {
   };
   const handleGPTBtn = (e) => {
     dispatch(gptBtnToggle()); //will toggle false->true and vv
-    
+
     dispatch(languageSelectFxn("english"));
   };
   const handleLanguageChange = (e) => {
@@ -50,18 +50,18 @@ const Browse = () => {
   };
   return (
     <>
-      <div className="flex flex-row justify-between px-4 bg-gradient-to-t from-black">
-        <Header />
+      <div className="flex flex-col md:flex-row justify-center items-center md:justify-between md:px-4 gap-0 bg-gradient-to-t from-black pb-5 md:pb-0">
+          <Header />
         {userSelector?.displayName && (
-          <p className="text-black text-4xl py-8 font-semibold">
-            {languages?.[languageSelector]?.greettext}, Mr.{" "}
+          <p className="text-black text-4xl md:py-8 font-semibold">
+            {languages?.[languageSelector]?.greettext}, {" "}
             {userSelector?.displayName}
           </p>
         )}
         <div className="flex flex-row my-5 gap-2">
           {gptBtnSelector && (
             <div className="flex flex-col gap-1">
-              <label className="" htmlFor="languageSelect">
+              <label className="font-semibold mt-0 md:mt-0" htmlFor="languageSelect">
                 {languages?.[languageSelector]?.selectLanguagetext}
               </label>
               <select

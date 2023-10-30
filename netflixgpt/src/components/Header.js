@@ -41,9 +41,10 @@ const Header = () => {
   }, []);
   return (
     <>
-      <div className="px-10 py-2">
+      {/* <div className="px-10 py-2"> */}
+      <div className="px-10 py-4 md:py-2 flex flex-row justify-center md:justify-start">
         <img
-          className="w-52 bg-gradient-to-t from-black h-28"
+          className="w-52 bg-gradient-to-l md:bg-gradient-to-t from-black h-20"
           src={logo}
           alt="Netflix Logo"
         />

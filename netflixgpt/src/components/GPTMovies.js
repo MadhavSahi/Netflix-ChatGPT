@@ -81,9 +81,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utilities/constants";
 import { gptFinalMoviesArrayofObj } from "../utilities/gptSlice";
-import MovieCard from "./MovieCard";
+import MovieCardGPT from "./MovieCardGPT";
 
-const GPTMovies = () => {
+const GPTMovies = ({ inputText }) => {
   const dispatch = useDispatch();
   const gptMoviesSelectorString = useSelector(
     (store) => store?.gpt?.gptResultMovies
@@ -142,20 +142,27 @@ const GPTMovies = () => {
     }
     // eslint-disable-next-line
   }, [gptMoviesSelectorString]);
+  // console.log(finalmoviesArrayofObj);
+  // console.log(inputText);
 
   return (
     <>
-      <div className="bg-bgBody py-0 mx-0 flex flex-col gap-2">
-        <div className="flex flex-row gap-5 flex-wrap justify-center overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+      {inputText && (
+        <p className="text-white pt-3 pb-7 text-center bg-black font-bold text-3xl">
+          {inputText} -:
+        </p>
+      )}
+      <div className="bg-bgBody mx-0 flex flex-col gap-2">
+        <div className="flex flex-row gap-5 py-3 flex-wrap justify-center overflow-x-scroll [&::-webkit-scrollbar]:hidden">
           {loading ? (
-            <p className="text-black w-1/3 text-4xl font-semibold bg-white text-center">
-              Loading...
-            </p>
+            <p className="text-black w-1/3 text-4xl font-semibold bg-white text-center"></p>
           ) : finalmoviesArrayofObj.length === 0 ? (
-            <p>No movies found.</p>
+            <p className="text-black w-1/3 text-4xl font-semibold bg-white text-center">
+              No movies found.
+            </p>
           ) : (
             finalmoviesArrayofObj.map((each_movie, index) => (
-              <MovieCard key={index} movie={each_movie} />
+              <MovieCardGPT key={index} movie={each_movie} />
             ))
           )}
         </div>

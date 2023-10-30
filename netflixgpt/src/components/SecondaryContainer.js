@@ -10,7 +10,7 @@ const SecondaryContainer = () => {
   //   console.log(AllMoviesSelector);
   return (
     <>
-      <div className="bg-black flex flex-col gap-4">
+      <div className="bg-black pt-4 md:pt-0 flex flex-col gap-3 md:gap-4">
         <MovieLists
           title="Now Playing"
           movies={AllMoviesSelector?.nowPlayingMovies}

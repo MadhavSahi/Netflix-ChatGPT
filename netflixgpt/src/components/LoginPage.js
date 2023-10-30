@@ -130,11 +130,11 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="bg-bgBody bg-cover bg-no-repeat bg-fixed bg-center">
+      <div className="bg-bgBody h-screen bg-cover bg-no-repeat bg-fixed bg-center">
         <Header />
         <div className="flex flex-row items-center justify-center">
           {/* login form */}
-          <form className="bg-black py-10 px-5 h-full w-[25%] mb-5 flex flex-col gap-5 rounded-md bg-opacity-70">
+          <form className="bg-black py-10 px-5 h-full w-[70%] md:w-[25%] mb-5 flex flex-col gap-5 rounded-md bg-opacity-70">
             <p className="text-white text-4xl mb-4">
               {signIn ? "Sign In" : "Sign Up"}
             </p>
