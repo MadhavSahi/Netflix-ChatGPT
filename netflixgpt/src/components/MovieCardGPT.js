@@ -100,7 +100,7 @@ const MovieCardGPT = ({ movie }) => {
       {/* <p>hi</p> */}
       <img
         onClick={handleGPTMovieClicked}
-        className="h-80 w-80 border-1 border-gray-800 rounded-sm hover:scale-95 hover:cursor-pointer"
+        className="h-80 py-3 w-80 border-1 border-gray-800 rounded-sm hover:scale-95 hover:cursor-pointer"
         key={movie?.id}
         alt="movie-poster"
         src={TMDB_IMG_URL + movie?.poster_path}

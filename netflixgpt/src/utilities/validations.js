@@ -10,7 +10,7 @@ export const ValidateCredentials = (email,password) => {
         return "Email is not valid !"
     }
     else if(passwordRegex===false){
-        return "Password is not valid !"
+        return "Password is not strong !"
     }
     else{
         return null;

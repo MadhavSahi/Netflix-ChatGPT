@@ -36,7 +36,7 @@ const GPTContainer = () => {
     <>
       {/* <p className="text-center">GPT CONTAINER</p> */}
       {/* <div className="bg-bgBody bg-cover bg-repeat"> */}
-      <div className="">
+      <div className="pb-0">
         <div className=" text-white bg-black flex flex-col justify-center items-center p-5 gap-5">
           <form className="flex flex-col md:flex-row gap-5">
             <input

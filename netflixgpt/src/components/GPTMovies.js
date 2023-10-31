@@ -152,8 +152,8 @@ const GPTMovies = ({ inputText }) => {
           {inputText} -:
         </p>
       )}
-      <div className="bg-bgBody mx-0 flex flex-col gap-2 pb-40">
-        <div className="flex flex-row gap-5 py-3 flex-wrap justify-center overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+      <div className="mx-0 flex flex-col gap-2 pb-16">
+        <div className="flex flex-row gap-5 bg-bgBody py-0 flex-wrap justify-center overflow-x-scroll [&::-webkit-scrollbar]:hidden">
           {loading ? (
             <p className="text-black w-1/3 text-4xl font-semibold bg-white text-center"></p>
           ) : finalmoviesArrayofObj.length === 0 ? (

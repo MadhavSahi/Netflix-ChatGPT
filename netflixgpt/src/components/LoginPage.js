@@ -93,7 +93,9 @@ const LoginPage = () => {
           //when the user is already present so can't sign him up
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMsg(errorCode + "-" + errorMessage);
+          // setErrorMsg(errorCode + "-" + errorMessage);
+          setErrorMsg("Either email or password is incorrect");
+          setErrorMsg("Either email or password is incorrect" || errorCode + "-" + errorMessage);
         });
     }
     // on SignIn page
@@ -123,7 +125,8 @@ const LoginPage = () => {
           //when there is no such user found in firebase
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMsg(errorCode + "-" + errorMessage);
+          // setErrorMsg(errorCode + "-" + errorMessage);
+          setErrorMsg("Either email or password is incorrect" || errorCode + "-" + errorMessage);
         });
     }
   };
@@ -182,7 +185,7 @@ const LoginPage = () => {
               <p className="text-xl text-white">
                 {signIn ? (
                   <span>
-                    New to Netflix ?{" "}
+                    New to Netflix GPT ?{" "}
                     <span
                       onClick={handleSignUpSignInButton}
                       className="text-red-400 cursor-pointer"
