@@ -46,7 +46,9 @@ const VideoMainDetails = ({ title, overview }) => {
             <p className="text-3xl md:text-5xl text-white sm:font-semibold md:font-bold">
               {title}
             </p>
-            <p> {truncateOverview(overview)}</p>
+            <p className="hidden lg:inline-block md:w-full text-white text-2xl font-medium">
+              {truncateOverview(overview)}
+            </p>
             <div className=" hidden lg:flex flex-row">
               <button className="bg-white text-black p-4 md:px-12 md:text-xl md:font-semibold rounded-md hover:bg-opacity-90">
                 Play

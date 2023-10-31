@@ -10,10 +10,11 @@ const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
   const NOW_PLAYING_MOVIES_API_CALL = async () => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&region=US",
+      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
       API_OPTIONS
     );
     const json_Data = await data.json();
+    // console.log(json_Data);
     // setMovieData(json_Data?.results);
     dispatch(addNowPlayingMovies(json_Data?.results));
   };

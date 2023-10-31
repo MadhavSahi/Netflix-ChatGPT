@@ -5,28 +5,29 @@ import { useSelector } from "react-redux";
 
 const MainContainer = () => {
   const moviesArray = useSelector((store) => store?.movies?.nowPlayingMovies);
-
   const [randomIndex, setRandomIndex] = useState(null);
 
   useEffect(() => {
-    if (moviesArray) {
+    if (moviesArray && moviesArray.length > 0) {
       const newRandomIndex = Math.floor(Math.random() * moviesArray.length);
       setRandomIndex(newRandomIndex);
     }
   }, [moviesArray]);
 
-  if (!moviesArray || randomIndex === null) {
+  // Check if mainMovie is defined before destructuring
+  // const mainMovie = moviesArray && randomIndex !== null ? moviesArray[randomIndex] : null;
+  const mainMovie = moviesArray && moviesArray[randomIndex];
+
+  if (!mainMovie) {
     return null;
   }
 
-  const mainMovie = moviesArray[randomIndex];
-  const { id, original_title, overview } = mainMovie;
-
+  // Render VideoMainDetails and VideoMainContainer components if mainMovie is defined
   return (
-    <>
-      <VideoMainDetails title={original_title} overview={overview} />
-      <VideoMainContainer movieId={id} />
-    </>
+    <div>
+      <VideoMainDetails title={mainMovie.original_title} overview={mainMovie.overview} />
+      <VideoMainContainer movieId={mainMovie.id} />
+    </div>
   );
 };
 
