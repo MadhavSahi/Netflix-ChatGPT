@@ -10,6 +10,7 @@ import {
 // import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utilities/userSlice";
+import Footer from "./Footer";
 
 // import BgBodyImage from "../images/BgBodyImg.jpg";
 
@@ -50,7 +51,7 @@ const LoginPage = () => {
     );
     setErrorMsg(resultMsg);
     if (errorMsg) return;
-  
+
     // on SignUp page
     if (!signIn) {
       createUserWithEmailAndPassword(
@@ -72,7 +73,7 @@ const LoginPage = () => {
                 addUser({
                   uid,
                   displayName,
-                  email
+                  email,
                 })
               );
               // navigate("/browse");
@@ -85,7 +86,7 @@ const LoginPage = () => {
               const errorMessage = error.message;
               setErrorMsg(errorCode + "-" + errorMessage);
             });
-  
+
           // console.log(user);
         })
         .catch((error) => {
@@ -126,83 +127,86 @@ const LoginPage = () => {
         });
     }
   };
-  
 
   return (
     <>
-      <div className="bg-bgBody h-screen bg-cover bg-no-repeat bg-fixed bg-center">
-        <Header />
-        <div className="flex flex-row items-center justify-center">
-          {/* login form */}
-          <form className="bg-black py-10 px-5 h-full w-[70%] md:w-[25%] mb-5 flex flex-col gap-5 rounded-md bg-opacity-70">
-            <p className="text-white text-4xl mb-4">
-              {signIn ? "Sign In" : "Sign Up"}
-            </p>
-            {!signIn ? (
+      {/* <div className="bg-bgBody h-screen bg-cover bg-no-repeat bg-fixed bg-center"> */}
+      <div className="h-screen bg-bgBody bg-cover bg-no-repeat flex flex-col justify-between">
+        <div className="">
+          <Header />
+          <div className="flex flex-row items-center justify-center">
+            {/* login form */}
+            <form className="bg-black py-10 px-5 h-full w-[70%] md:w-[25%] mb-5 flex flex-col gap-5 rounded-md bg-opacity-70">
+              <p className="text-white text-4xl mb-4">
+                {signIn ? "Sign In" : "Sign Up"}
+              </p>
+              {!signIn ? (
+                <input
+                  type="text"
+                  ref={userName}
+                  placeholder="Full name"
+                  className="text-white placeholder:text-white p-2 bg-gray-500 mb-4 px-5 rounded-md"
+                />
+              ) : null}
+              {!signIn ? (
+                <input
+                  type="number"
+                  ref={phoneNumber}
+                  placeholder="Mobile number"
+                  className="text-white placeholder:text-white p-2 bg-gray-500 mb-4 px-5 rounded-md"
+                />
+              ) : null}
               <input
+                ref={email}
                 type="text"
-                ref={userName}
-                placeholder="Full name"
+                placeholder="Email"
                 className="text-white placeholder:text-white p-2 bg-gray-500 mb-4 px-5 rounded-md"
               />
-            ) : null}
-            {!signIn ? (
+              {/* <br></br> */}
               <input
-                type="number"
-                ref={phoneNumber}
-                placeholder="Mobile number"
-                className="text-white placeholder:text-white p-2 bg-gray-500 mb-4 px-5 rounded-md"
+                ref={password}
+                type="password"
+                placeholder="Password"
+                className="text-white placeholder:text-white p-2 mb-0 bg-gray-500 px-5 rounded-md"
               />
-            ) : null}
-            <input
-              ref={email}
-              type="text"
-              placeholder="Email"
-              className="text-white placeholder:text-white p-2 bg-gray-500 mb-4 px-5 rounded-md"
-            />
-            {/* <br></br> */}
-            <input
-              ref={password}
-              type="password"
-              placeholder="Password"
-              className="text-white placeholder:text-white p-2 mb-0 bg-gray-500 px-5 rounded-md"
-            />
-            {errorMsg ? (
-              <p className="text-red-400 text-xl font-semibold">{errorMsg}</p>
-            ) : null}
-            <button
-              onClick={(e) => SignInSignUpLogic(e)}
-              onSubmit={(e) => e.preventDefault()}
-              className="font-semibold bg-red-600 border-red-800 mt-4 text-white rounded-md p-2"
-            >
-              {signIn ? "Sign In" : "Sign Up"}
-            </button>
-            <p className="text-xl text-white">
-              {signIn ? (
-                <span>
-                  New to Netflix ?{" "}
-                  <span
-                    onClick={handleSignUpSignInButton}
-                    className="text-red-400 cursor-pointer"
-                  >
-                    Sign Up !
+              {errorMsg ? (
+                <p className="text-red-400 text-xl font-semibold">{errorMsg}</p>
+              ) : null}
+              <button
+                onClick={(e) => SignInSignUpLogic(e)}
+                onSubmit={(e) => e.preventDefault()}
+                className="font-semibold bg-red-600 border-red-800 mt-4 text-white rounded-md p-2"
+              >
+                {signIn ? "Sign In" : "Sign Up"}
+              </button>
+              <p className="text-xl text-white">
+                {signIn ? (
+                  <span>
+                    New to Netflix ?{" "}
+                    <span
+                      onClick={handleSignUpSignInButton}
+                      className="text-red-400 cursor-pointer"
+                    >
+                      Sign Up !
+                    </span>
                   </span>
-                </span>
-              ) : (
-                <span>
-                  Already a User ?{" "}
-                  <span
-                    onClick={handleSignUpSignInButton}
-                    className="text-red-400 cursor-pointer"
-                  >
-                    Sign In !
+                ) : (
+                  <span>
+                    Already a User ?{" "}
+                    <span
+                      onClick={handleSignUpSignInButton}
+                      className="text-red-400 cursor-pointer"
+                    >
+                      Sign In !
+                    </span>
                   </span>
-                </span>
-              )}
-            </p>
-          </form>
-          {/* signup form */}
+                )}
+              </p>
+            </form>
+            {/* signup form */}
+          </div>
         </div>
+        <Footer />
       </div>
     </>
   );

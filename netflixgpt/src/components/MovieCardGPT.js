@@ -25,12 +25,22 @@ const MovieCardGPT = ({ movie }) => {
     );
     const json0 = await result.json();
     // console.log(json0);
+    const OBJ_WITH_EXACT_TITLE_NAME = json0.results.find(
+      (obj) => obj.title === movie?.title
+      // obj.name === "Final Trailer" ||
+      // obj.name === "Official Teaser" ||
+      // obj.type === "Trailer"
+    );
+    // console.log(OBJ_WITH_EXACT_TITLE_NAME);
+    const final_movie_obj = OBJ_WITH_EXACT_TITLE_NAME || json0?.results[0];
+
     // console.log(json0?.results[0]?.id);
+    // console.log(final_movie_obj);
 
     // API CALL for Clicked movie Videos
     const data = await fetch(
       "https://api.themoviedb.org/3/movie/" +
-        json0?.results[0]?.id +
+        final_movie_obj?.id +
         "/videos?language=en-US",
       API_OPTIONS
     );
@@ -68,7 +78,7 @@ const MovieCardGPT = ({ movie }) => {
     // API CALL for Clicked movie details
     const data2 = await fetch(
       "https://api.themoviedb.org/3/movie/" +
-        json0?.results[0]?.id +
+        final_movie_obj?.id +
         "?language=en-US",
       API_OPTIONS
     );

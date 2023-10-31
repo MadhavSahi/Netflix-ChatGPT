@@ -4,6 +4,7 @@ import { gptMoviesAdd, gptSearchQueryByUserFxn } from "../utilities/gptSlice";
 import { languages } from "../utilities/constants";
 import { openai } from "../utilities/openAI";
 import GPTMovies from "./GPTMovies";
+import Footer2 from "./FooterGPT";
 
 const GPTContainer = () => {
   const [gptText,setGptText]=useState(null);
@@ -47,7 +48,7 @@ const GPTContainer = () => {
             />
             <button
               onClick={handleGPTSearchBtn}
-              className="bg-gray-500 text-white py-2 px-5 font-bold text-xl rounded-md hover:scale-95 w-1/2 md:w-full"
+              className="bg-gray-500 text-white py-2 px-5 font-bold text-xl rounded-md hover:scale-95 w-1/2 md:w-full self-center"
             >
               {/* Search GPT */}
               {languages?.[languageSelector]?.search}
@@ -60,6 +61,7 @@ const GPTContainer = () => {
           <GPTMovies inputText={null} />
         )}
       </div>
+        <Footer2/>
     </>
   );
 };

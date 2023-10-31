@@ -15,6 +15,7 @@ import { gptBtnToggle } from "../utilities/gptSlice";
 import GPTContainer from "./GPTContainer";
 import { languageSelectFxn } from "../utilities/languageSlice";
 import { languages } from "../utilities/constants";
+import Footer from "./Footer";
 
 const Browse = () => {
   //custom hook
@@ -51,17 +52,20 @@ const Browse = () => {
   return (
     <>
       <div className="flex flex-col md:flex-row justify-center items-center md:justify-between md:px-4 gap-0 bg-gradient-to-t from-black pb-5 md:pb-0">
-          <Header />
+        <Header />
         {userSelector?.displayName && (
           <p className="text-black text-4xl md:py-8 font-semibold">
-            {languages?.[languageSelector]?.greettext}, {" "}
+            {languages?.[languageSelector]?.greettext},{" "}
             {userSelector?.displayName}
           </p>
         )}
         <div className="flex flex-row my-5 gap-2">
           {gptBtnSelector && (
             <div className="flex flex-col gap-1">
-              <label className="font-semibold mt-0 md:mt-0" htmlFor="languageSelect">
+              <label
+                className="font-semibold mt-0 md:mt-0"
+                htmlFor="languageSelect"
+              >
                 {languages?.[languageSelector]?.selectLanguagetext}
               </label>
               <select
@@ -105,11 +109,13 @@ const Browse = () => {
       {gptBtnSelector ? (
         <>
           <GPTContainer />
+          {/* <Footer /> */}
         </>
       ) : (
         <>
           <MainContainer />
           <SecondaryContainer />
+          <Footer />
         </>
       )}
     </>
