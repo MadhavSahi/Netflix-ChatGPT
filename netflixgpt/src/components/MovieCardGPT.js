@@ -13,7 +13,7 @@ const MovieCardGPT = ({ movie }) => {
   // console.log(movie);
   const dispatch = useDispatch();
   const handleGPTMovieClicked = async () => {
-    window.scroll(0, 90);
+    window.scroll(0, 0);
     // console.log(movie);
 
     //API call for getting movieID from name

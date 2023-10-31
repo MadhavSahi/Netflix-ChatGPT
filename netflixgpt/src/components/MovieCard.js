@@ -15,7 +15,7 @@ const MovieCard = ({ movie }) => {
   //   // eslint-disable-next-line
   // }, []);
   const handlePosterClick = async () => {
-    window.scrollTo(0, 90);
+    window.scrollTo(0, 0);
     try {
       // console.log(movie);
       // API CALL for Clicked movie Videos
