@@ -11,9 +11,9 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    //this is being triggered from LoginPage.js ->signInWithEmailAndPassword method on sign in or createUserWithEmailAndPassword on sign up....don't get confused...that's why on click of valid sign up or sign in this method is triggered bcz we have done subscription to auth change...so on valid sign in or signup this method will be called up automagically. It will ttigger on every signup, signin and signout.
+    //this is being triggered from LoginPage.js ->signInWithEmailAndPassword method on sign in or createUserWithEmailAndPassword on sign up....don't get confused...that's why on click of valid sign up or sign in this method is triggered bcz we have done subscription to auth change...so on valid sign in or signup this method will be called up automagically. It will trigger on every signup, signin and signout.
 
-    // That's correct. onAuthStateChanged is an observer that listens for changes in the user's authentication state, but it doesn't have a direct mechanism to sign a user in or out. It's used for responding to sign-in and sign-out events and keeping your application's UI and data in sync with the user's authentication state.
+    // onAuthStateChanged is an observer that listens for changes in the user's authentication state, but it doesn't have a direct mechanism to sign a user in or out. It's used for responding to sign-in and sign-out events and keeping your application's UI and data in sync with the user's authentication state.
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
@@ -30,6 +30,8 @@ const Header = () => {
       } else {
         // User is signed out...after the SignOut API.
         dispatch(removeUser());
+
+        //redirect the user to "/" page after signout
         navigate("/");
       }
       return () => {

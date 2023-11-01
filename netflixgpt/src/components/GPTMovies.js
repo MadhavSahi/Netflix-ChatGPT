@@ -97,6 +97,7 @@ const GPTMovies = ({ inputText }) => {
     if (gptMoviesSelectorString) {
       const GET_MOVIE_BY_NAME_FROM_ARRAY = async (each_movie) => {
         try {
+          // console.log(each_movie);
           const result = await fetch(
             "https://api.themoviedb.org/3/search/movie?query=" +
               each_movie +
@@ -104,7 +105,12 @@ const GPTMovies = ({ inputText }) => {
             API_OPTIONS
           );
           const json = await result.json();
-          return json.results;
+          const filteredMovieArray = json.results.filter((each_obj) => each_obj.title === each_movie);
+
+          // console.log(filteredMovieArray);
+          // console.log(filteredMovieArray);
+          // return json.results;
+          return filteredMovieArray;
         } catch (error) {
           // console.error("Error fetching movie data:", error);
           return [];
@@ -118,6 +124,8 @@ const GPTMovies = ({ inputText }) => {
 
       const resolvePromises = async () => {
         const RESOLVED_PROMISES_ARRAY = await Promise.all(PROMISE_ARRAY);
+        // console.log(RESOLVED_PROMISES_ARRAY);
+
         const extractFields = (each_movie) => ({
           title: each_movie?.title,
           poster_path: each_movie?.poster_path,
@@ -129,7 +137,14 @@ const GPTMovies = ({ inputText }) => {
               (each_movie) => each_movie?.title && each_movie?.poster_path
             ) // Filter valid objects
             .map((each_movie) => extractFields(each_movie));
-
+          // console.log(newArray);
+          // const OBJS_WITH_EXACT_NAMES = newArray.find(
+          //   (obj) =>
+          //     // obj.name === "Official Trailer" ||
+          //     // obj.name === "Final Trailer" ||
+          //     // obj.name === "Official Teaser" ||
+          //     obj.title === "Trailer"
+          // );
           dispatch(gptFinalMoviesArrayofObj(newArray));
           setLoading(false);
         } else {

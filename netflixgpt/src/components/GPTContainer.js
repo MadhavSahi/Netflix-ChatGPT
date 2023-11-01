@@ -20,7 +20,7 @@ const GPTContainer = () => {
     const PROMPT_GOOD =
       "Act as a movie recommendation system and give result for " +
       gptQueryText.current.value +
-      ". Give 10 results in comma separted values like Movie 1,  Movie 2, Movie 3, Movie 4, Movie 5, Movie 6,  Movie 7, Movie 8, Movie 9, Movie 10. Don't add any extra text";
+      ". Give 10 results in comma separted values like Movie 1,Movie 2,Movie 3,Movie 4,Movie 5,Movie 6,Movie 7,Movie 8,Movie 9,Movie 10. Don't add any extra text and don't add any space after comma.";
     // console.log(gptQueryText.current.value);
     // console.log(PROMPT_GOOD);
     const chatCompletion = await openai.chat.completions.create({

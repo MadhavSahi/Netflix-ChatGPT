@@ -94,7 +94,6 @@ const LoginPage = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           // setErrorMsg(errorCode + "-" + errorMessage);
-          setErrorMsg("Either email or password is incorrect");
           setErrorMsg("Either email or password is incorrect" || errorCode + "-" + errorMessage);
         });
     }
