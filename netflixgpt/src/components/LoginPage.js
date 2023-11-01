@@ -185,10 +185,11 @@ const LoginPage = () => {
               <p className="text-xl text-white">
                 {signIn ? (
                   <span>
-                    New to Netflix GPT ?{" "}
+                    New to Netflix GPT ? &nbsp;
+
                     <span
                       onClick={handleSignUpSignInButton}
-                      className="text-red-400 cursor-pointer"
+                      className="ml-1 text-xl md:ml-0 text-red-400 cursor-pointer"
                     >
                       Sign Up !
                     </span>
