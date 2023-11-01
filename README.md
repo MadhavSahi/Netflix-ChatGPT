@@ -18,13 +18,13 @@ Netflix GPT is a web application that leverages OpenAI's GPT-3.5 model to provid
 
 ## 📌 Libraries and Technologies Used
 
-- **React**: A JavaScript library for building user interfaces.
+- **React**: For building dynamic user interface.
 - **React Router DOM**: For handling routing and navigation in the application.
 - **Redux Toolkit**: To manage the global state and store.
 - **React Icons**: To include various icons throughout the application.
 - **Tailwind CSS**: For modular and responsive styling.
 - **TMDP API**: For fetching video content and suggestions.
-- **UUID**: For generating unique keys for elements.
+- **Open AI API**: For implementing Chat GPT-3.5 search functionality.
 
 ## 📌 Key Features
 
