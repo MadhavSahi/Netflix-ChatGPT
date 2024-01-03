@@ -120,11 +120,11 @@ Netflix GPT is a web application that leverages OpenAI's GPT-3.5 model to provid
 
 ## 📌 Screenshots
 
-![Landing Home Page](./netflixgpt/src/images/SS-01.PNG)
+![Landing Home Page](./netflixgpt/src/images/SS-01.png)
 
 <br>
 
-![Browse Page](./netflixgpt/src/images/SS-02.PNG)
+![Browse Page](./netflixgpt/src/images/SS-02.png)
 
 <br>
 
