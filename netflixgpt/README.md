@@ -124,7 +124,7 @@ Netflix GPT is a web application that leverages OpenAI's GPT-3.5 model to provid
 
 <br>
 
-![Browse Page](./src/images/SS-02.PNG)
+![Browse Page](./src/images/SS-02.png)
 
 <br>
 
