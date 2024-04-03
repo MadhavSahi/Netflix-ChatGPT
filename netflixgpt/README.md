@@ -10,7 +10,7 @@ Netflix GPT is a web application that leverages OpenAI's GPT-3.5 model to provid
 
 ## 📌 Live Demo
 
-👉 [Visit Here - Netflix GPT](https://netflixgpt-open-ai-react-madhavsahi.netlify.app/ "Live Link")
+👉 [Visit Here - Netflix GPT](https://netflixgpt-reactjs-openai-madhavsahi.netlify.app/ "Live Link")
 
 ## 📌 Repository
 
