@@ -6,7 +6,7 @@
 <br>
 <!-- ![YouTube Clone Logo](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white) -->
 
-Netflix GPT is a web application that leverages OpenAI's GPT-3.5 model to provide users with personalized movie recommendations based on natural language queries. It features user authentication, multi-language support, and an intuitive interface for exploring movie details. Designed with React JS, redux Toolkit, React Router DOM, Tailwind CSS and deployed on Netlify, the project demonstrates expertise in web development, Open AI Chat GPT integration, and responsive design.
+Netflix GPT is a Web application that leverages OpenAI's GPT-3.5 model to provide users with personalized movie recommendations based on natural language queries. It features user authentication, multi-language support, and an intuitive interface for exploring movie details. Designed with React JS, redux Toolkit, React Router DOM, Tailwind CSS and deployed on Netlify, the project demonstrates expertise in web development, Open AI Chat GPT integration, and responsive design.
 
 ## 📌 Live Demo
 
