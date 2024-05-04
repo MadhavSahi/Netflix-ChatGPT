@@ -30,7 +30,7 @@ Netflix GPT is a Web application that leverages OpenAI's GPT-3.5 model to provid
 
 ### Firebase Authentication
 
-- Netflix GPT uses Firebase Authentication to manage user profiles and enhance the user experience. Firebase Authentication provides secure, password-based sign-up and sign-in mechanisms. Here's how it works within the project:
+- Netflix GPT uses Firebase Authentication API to manage user profiles and enhance the user experience. Firebase Authentication provides secure, password-based sign-up and sign-in mechanisms. Here's how it works within the project:
 
 - **User Profiles:** Users can create personalized profiles by signing up or signing in. This feature allows users to maintain their movie preferences and receive tailored recommendations.
 
